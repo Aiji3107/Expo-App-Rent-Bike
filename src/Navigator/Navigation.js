@@ -6,7 +6,8 @@ import CekTiket from '../Screens/CekTiket';
 import Transaksi from '../Screens/Transaksi';
 import Pengaturan from '../Screens/Pengaturan';
 import TutupBuku from '../Screens/TutupBuku';
-import Antrian from '../Screens/Antrian'; // Added this line
+import Antrian from '../Screens/Antrian'; 
+import Login from '../Screens/login';
 
 const Drawer = createDrawerNavigator();
 
@@ -20,6 +21,7 @@ function Navigation() {
         <Drawer.Screen name="Transaksi" component={Transaksi} />
         <Drawer.Screen name="Pengaturan" component={Pengaturan} />
         <Drawer.Screen name="Tutup Buku" component={TutupBuku} />
+        <Drawer.Screen name="Login" component={Login} />
       </Drawer.Navigator>
   );
 }
