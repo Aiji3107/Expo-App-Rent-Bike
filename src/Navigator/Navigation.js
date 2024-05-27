@@ -7,13 +7,13 @@ import Transaksi from '../Screens/Transaksi';
 import Pengaturan from '../Screens/Pengaturan';
 import TutupBuku from '../Screens/TutupBuku';
 import Antrian from '../Screens/Antrian'; 
-import Login from '../Screens/login';
+import Login from '../login/login';
 
 const Drawer = createDrawerNavigator();
 
 function Navigation() {
   return (
-      <Drawer.Navigator>
+      <Drawer.Navigator >
         <Drawer.Screen name="Antrian" component={Antrian} />
         <Drawer.Screen name="Beli Tiket" component={BeliTiket} />
         <Drawer.Screen name="Scan QR" component={ScanQR} />
@@ -21,7 +21,6 @@ function Navigation() {
         <Drawer.Screen name="Transaksi" component={Transaksi} />
         <Drawer.Screen name="Pengaturan" component={Pengaturan} />
         <Drawer.Screen name="Tutup Buku" component={TutupBuku} />
-        <Drawer.Screen name="Login" component={Login} />
       </Drawer.Navigator>
   );
 }
