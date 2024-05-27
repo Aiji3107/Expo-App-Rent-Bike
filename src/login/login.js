@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView, Dimensions } from 'react-native';
-import { auth } from '../../firebase';
+import { auth } from '../firebase/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 
@@ -9,18 +9,18 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
+    
+    // useEffect(() => {
+    //     const onChange = () => {
+    //         const width = Dimensions.get('window').width;
+    //         setScreenWidth(width);
+    //     };
 
-    useEffect(() => {
-        const onChange = () => {
-            const width = Dimensions.get('window').width;
-            setScreenWidth(width);
-        };
-
-        Dimensions.addEventListener('change', onChange);
-        return () => {
-            Dimensions.removeEventListener('change', onChange);
-        };
-    }, []);
+    //     Dimensions.addEventListener('change', onChange);
+    //     return () => {
+    //         Dimensions.removeEventListener('change', onChange);
+    //     };
+    // }, []);
 
     const handleLogin = () => {
       auth
