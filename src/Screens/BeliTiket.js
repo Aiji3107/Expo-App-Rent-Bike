@@ -1,35 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
 import Gambar from '../../assets/images/gambar2.png';
+import { db } from '../firebase/firebase'; // Pastikan jalur impor ini benar
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const BeliTiket = () => {
   const [search, setSearch] = useState('');
   const [selectedTickets, setSelectedTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [tickets, setTickets] = useState([]);
 
-  const tickets = [
-    {
-      id: 1,
-      name: 'Tiket Bogey 2 seater 120 menit',
-      date: '01 January 2024 - 31 December 2024',
-      price: 120000,
-      image: Gambar,
-    },
-    {
-      id: 2,
-      name: 'Tiket Motor listrik seater 120 menit',
-      date: '20 April 2024 - 4 Juli 2024',
-      price: 20000,
-      image: Gambar,
-    },
-    {
-      id: 3,
-      name: 'Tiket Mobil listrik',
-      date: '20 April 2024 - 4 Juli 2024',
-      price: 20000,
-      image: Gambar,
-    },
-  ];
-
+  useEffect(() => {
+    const subscriber = onSnapshot(collection(db, 'tickets'), (querySnapshot) => {
+      const tickets = [];
+      querySnapshot.forEach((documentSnapshot) => {
+        tickets.push({
+          ...documentSnapshot.data(),
+          id: documentSnapshot.id,
+        });
+      });
+        setTickets(tickets);
+        setLoading(false);
+      });
+    // Unsubscribe from events when no longer in use
+    return () => subscriber();
+  }, []);
   const handleSearchChange = (value) => {
     setSearch(value);
   };
@@ -61,21 +56,25 @@ const BeliTiket = () => {
       </View>
       <ScrollView contentContainerStyle={{ padding: 10, paddingTop: 0 }}>
         <View>
-          {filteredTickets.map((ticket) => (
-            <TouchableOpacity
-              key={ticket.id}
-              onPress={() => handleTicketClick(ticket)}
-              style={{
-                ...styles.ticketContainer,
-                backgroundColor: selectedTickets.includes(ticket) ? '#e0f7fa' : '#fff',
-              }}
-            >
-              <Image source={ticket.image} style={styles.image} />
-              <Text>{ticket.name}</Text>
-              <Text>{ticket.date}</Text>
-              <Text>Rp. {ticket.price.toLocaleString()}</Text>
-            </TouchableOpacity>
-          ))}
+          {loading ? (
+            <Text>Loading...</Text>
+          ) : (
+            filteredTickets.map((ticket) => (
+              <TouchableOpacity
+                key={ticket.id}
+                onPress={() => handleTicketClick(ticket)}
+                style={{
+                  ...styles.ticketContainer,
+                  backgroundColor: selectedTickets.includes(ticket) ? '#e0f7fa' : '#fff',
+                }}
+              >
+                <Image source={ticket.image || Gambar} style={styles.image} />
+                <Text>{ticket.name}</Text>
+                <Text>{ticket.date}</Text>
+                <Text>Rp. {ticket.price.toLocaleString()}</Text>
+              </TouchableOpacity>
+            ))
+          )}
         </View>
         <View>
           <Text>Total Tiket Terpilih: {selectedTickets.length}</Text>
@@ -88,7 +87,7 @@ const BeliTiket = () => {
 const styles = StyleSheet.create({
   searchContainer: {
     padding: 10,
-    backgroundColor: '#fff', // Tambahkan latar belakang untuk search bar
+    backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
