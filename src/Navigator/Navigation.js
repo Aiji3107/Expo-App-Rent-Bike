@@ -7,13 +7,17 @@ import Transaksi from '../Screens/Transaksi';
 import Pengaturan from '../Screens/Pengaturan';
 import TutupBuku from '../Screens/TutupBuku';
 import Antrian from '../Screens/Antrian'; 
-import Login from '../login/login';
+import Login from '../Login/login';
+import DrawerHeader from '../components/DrawerHeader';
 
 const Drawer = createDrawerNavigator();
 
+ 
+
 function Navigation() {
   return (
-      <Drawer.Navigator >
+     <Drawer.Navigator drawerContent={(props) => <DrawerHeader {...props} />}>
+        
         <Drawer.Screen name="Antrian" component={Antrian} />
         <Drawer.Screen name="Beli Tiket" component={BeliTiket} />
         <Drawer.Screen name="Scan QR" component={ScanQR} />
