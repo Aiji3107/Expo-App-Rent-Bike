@@ -1,10 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native'
 
 const BeliTiket = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>INI Beli Tiket</Text>
+          {/* BOX 1 */}
+          
+          <View style={{width:'100%', height:'auto', justifyContent:'center', alignItems:'flex-start', marginBottom:10,
+            borderColor:'black', borderWidth:2, borderRadius:4
+          }}>
+            <Image source={require('../../assets/images/gambar2.png')} style={{width:'100%', height:'40%'}}></Image>
+            <Text style={{color:'black', fontSize:16, fontWeight:'bold', textAlign:'center'}}>Borneo Bike 30 menit</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>10 Januari 2024 - 31 Desember 2024</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>Rp. 10.000</Text>
+          </View>
+          {/* End Box */}
+          {/* BOX 1 */}
+          
+          <View style={{width:'100%', height:'auto', justifyContent:'center', alignItems:'flex-start', marginBottom:10,
+            borderColor:'black', borderWidth:2, borderRadius:4
+          }}>
+            <Image source={require('../../assets/images/gambar2.png')} style={{width:'100%', height:'40%'}}></Image>
+            <Text style={{color:'black', fontSize:16, fontWeight:'bold', textAlign:'center'}}>Borneo Bike 30 menit</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>10 Januari 2024 - 31 Desember 2024</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>Rp. 10.000</Text>
+          </View>
+          {/* End Box */}
+          {/* BOX 1 */}
+          
+          <View style={{width:'100%', height:'auto', justifyContent:'center', alignItems:'flex-start', marginBottom:10,
+            borderColor:'black', borderWidth:2, borderRadius:4
+          }}>
+            <Image source={require('../../assets/images/gambar2.png')} style={{width:'100%', height:'40%'}}></Image>
+            <Text style={{color:'black', fontSize:16, fontWeight:'bold', textAlign:'center'}}>Borneo Bike 30 menit</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>10 Januari 2024 - 31 Desember 2024</Text>
+            <Text style={{color:'black', fontSize:16, fontWeight:'medium', textAlign:'center'}}>Rp. 10.000</Text>
+          </View>
+          {/* End Box */}
         </View>
       );
 };
