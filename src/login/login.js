@@ -10,18 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     
-    // useEffect(() => {
-    //     const onChange = () => {
-    //         const width = Dimensions.get('window').width;
-    //         setScreenWidth(width);
-    //     };
-
-    //     Dimensions.addEventListener('change', onChange);
-    //     return () => {
-    //         Dimensions.removeEventListener('change', onChange);
-    //     };
-    // }, []);
-
+   
     const handleLogin = () => {
       auth
         signInWithEmailAndPassword(auth, email, password)
